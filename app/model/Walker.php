@@ -2,11 +2,19 @@
 
 namespace App\Model;
 
+/**
+ * Class Walker
+ * @package App\Model
+ */
 class Walker
 {
     /** @var Graph */
     private $graph;
 
+    /**
+     * Walker constructor.
+     * @param Graph $graph
+     */
     public function __construct(Graph $graph)
     {
         $this->graph = $graph;
@@ -14,7 +22,7 @@ class Walker
     }
 
     /**
-     * @param string   $node
+     * @param string $node
      * @param Sequence $sequence
      * @return array
      */
@@ -22,9 +30,11 @@ class Walker
     {
         $path = [];
         $sequence->put($node);
+
         while (!$sequence->isEmpty()) {
             $curr = $sequence->get();
             $path[$curr] = true;
+
             foreach ($this->graph->getEdges($curr) as $next => $length) {
                 if (!isset($path[$next])) {
                     if (!$sequence->contains($next)) {
@@ -32,13 +42,15 @@ class Walker
                     }
                 }
             }
+
             $this->show($path, $sequence);
         }
+
         return $path;
     }
 
     /**
-     * @param array    $path
+     * @param array $path
      * @param Sequence $sequence
      */
     public function show(array $path, Sequence $sequence): void
@@ -55,10 +67,13 @@ class Walker
             }
             echo '<br>';
         }
+
         echo '<br>';
+
         foreach ($sequence->getList() as $item) {
             echo $item.' ';
         }
+
         echo '<br><br>';
     }
 }

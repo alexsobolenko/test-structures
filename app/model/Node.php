@@ -2,9 +2,12 @@
 
 namespace App\Model;
 
+/**
+ * Class Node
+ * @package App\Model
+ */
 class Node
 {
-
     /** @var string */
     private $item;
 

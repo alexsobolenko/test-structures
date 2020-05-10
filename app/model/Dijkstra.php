@@ -2,6 +2,10 @@
 
 namespace App\Model;
 
+/**
+ * Class Dijkstra
+ * @package App\Model
+ */
 class Dijkstra
 {
     private const INFINITY = 1e19;
@@ -39,9 +43,11 @@ class Dijkstra
     {
         $this->init();
         $this->esum[$fromNode] = 0;
+
         while ($currNode = $this->findNearestUnusedNode()) {
             $this->setEsumToNextNodes($currNode);
         }
+
         return $this->restorePath($fromNode, $toNode);
     }
 
@@ -63,6 +69,7 @@ class Dijkstra
     public function findNearestUnusedNode(): string
     {
         $nearestNode = '';
+
         foreach ($this->graph->getNodes() as $node) {
             if (!$this->used[$node]) {
                 if ($nearestNode == '' || ($this->esum[$node] < $this->esum[$nearestNode])) {
@@ -70,6 +77,7 @@ class Dijkstra
                 }
             }
         }
+
         return $nearestNode;
     }
 
@@ -82,6 +90,7 @@ class Dijkstra
         foreach ($this->graph->getEdges($currNode) as $nextNode => $length) {
             if (!$this->used[$nextNode]) {
                 $newEsum = $this->esum[$currNode] + $length;
+
                 if ($newEsum < $this->esum[$nextNode]) {
                     $this->esum[$nextNode] = $newEsum;
                     $this->path[$nextNode] = $currNode;
@@ -98,9 +107,11 @@ class Dijkstra
     public function restorePath(string $fromNode, string $toNode): string
     {
         $path = $toNode;
+
         while ($toNode !== $fromNode) {
             $toNode = $this->path[$toNode];
-            $path = $toNode.$path;
+            $path = sprintf("%s%s", $toNode, $path);
+
         }
         return $path;
     }

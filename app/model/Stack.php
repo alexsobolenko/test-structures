@@ -2,6 +2,10 @@
 
 namespace App\Model;
 
+/**
+ * Class Stack
+ * @package App\Model
+ */
 class Stack extends Sequence
 {
     /** @var Node|null */
@@ -24,7 +28,7 @@ class Stack extends Sequence
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function get(): ?string
     {
@@ -34,9 +38,9 @@ class Stack extends Sequence
 
         $item = $this->last->getItem();
         $this->last = $this->last->getNext();
+
         return $item;
     }
-
 
     /**
      * @return Node|null

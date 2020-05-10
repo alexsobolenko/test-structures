@@ -2,6 +2,10 @@
 
 namespace App\Model;
 
+/**
+ * Class Queue
+ * @package App\Model
+ */
 class Queue extends Sequence
 {
     /** @var Node */
@@ -25,6 +29,7 @@ class Queue extends Sequence
     public function put(string $item) : void
     {
         $node = new Node($item);
+
         if ($this->isEmpty()) {
             $this->head = $node;
             $this->last = $node;
@@ -45,6 +50,7 @@ class Queue extends Sequence
 
         $item = $this->head->getItem();
         $this->head = $this->head->getNext();
+
         return $item;
     }
 

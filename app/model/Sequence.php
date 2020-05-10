@@ -2,6 +2,10 @@
 
 namespace App\Model;
 
+/**
+ * Class Sequence
+ * @package App\Model
+ */
 abstract class Sequence
 {
     /**
@@ -10,7 +14,7 @@ abstract class Sequence
     abstract public function put(string $item): void;
 
     /**
-     * @return null|string
+     * @return string|null
      */
     abstract public function get(): ?string;
 
@@ -33,7 +37,8 @@ abstract class Sequence
     public function getList(): iterable
     {
         $curr = $this->getFirst();
-        while ($curr !== null) {
+
+        while (!is_null($curr)) {
             yield $curr->getItem();
             $curr = $curr->getNext();
         }
@@ -50,6 +55,7 @@ abstract class Sequence
                 return true;
             }
         }
+
         return false;
     }
 }

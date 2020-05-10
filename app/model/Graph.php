@@ -6,10 +6,10 @@ class Graph
 {
     /** @var array */
     private $edges;
-    // матрица смежности вершин
-    // $edges['A']['B'] = 12;  - длина
-    // $edges['B']['A'] = 12;
 
+    /**
+     * Graph constructor.
+     */
     public function __construct()
     {
         $this->edges = [];
