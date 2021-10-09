@@ -21,13 +21,7 @@ class ComposerStaticInitf34e2b6c05f793bfbd7000c7c95cc57c
     );
 
     public static $classMap = array (
-        'App\\Model\\Dijkstra' => __DIR__ . '/../..' . '/app/model/Dijkstra.php',
-        'App\\Model\\Graph' => __DIR__ . '/../..' . '/app/model/Graph.php',
-        'App\\Model\\Node' => __DIR__ . '/../..' . '/app/model/Node.php',
-        'App\\Model\\Queue' => __DIR__ . '/../..' . '/app/model/Queue.php',
-        'App\\Model\\Sequence' => __DIR__ . '/../..' . '/app/model/Sequence.php',
-        'App\\Model\\Stack' => __DIR__ . '/../..' . '/app/model/Stack.php',
-        'App\\Model\\Walker' => __DIR__ . '/../..' . '/app/model/Walker.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

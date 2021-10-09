@@ -1,22 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model;
 
-/**
- * Class Node
- * @package App\Model
- */
 class Node
 {
-    /** @var string */
-    private $item;
-
-    /** @var Node|null */
-    private $next;
+    /**
+     * @var string
+     */
+    private string $item;
 
     /**
-     * Node constructor.
-     * @param string    $item
+     * @var Node|null
+     */
+    private ?Node $next;
+
+    /**
+     * @param string $item
      * @param Node|null $next
      */
     public function __construct(string $item, ?Node $next = null)
@@ -28,7 +29,7 @@ class Node
     /**
      * @return string
      */
-    public function getItem() : string
+    public function getItem(): string
     {
         return $this->item;
     }
@@ -36,7 +37,7 @@ class Node
     /**
      * @return Node|null
      */
-    public function getNext() : ?Node
+    public function getNext(): ?Node
     {
         return $this->next;
     }
@@ -44,7 +45,7 @@ class Node
     /**
      * @param Node|null $next
      */
-    public function setNext(?Node $next) : void
+    public function setNext(?Node $next): void
     {
         $this->next = $next;
     }

@@ -1,22 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model;
 
-/**
- * Class Queue
- * @package App\Model
- */
 class Queue extends Sequence
 {
-    /** @var Node */
-    private $head;
-
-    /** @var Node */
-    private $last;
+    /**
+     * @var Node
+     */
+    private Node $head;
 
     /**
-     * Queue constructor.
+     * @var Node
      */
+    private Node $last;
+
     public function __construct()
     {
         $this->head = null;
@@ -26,10 +25,9 @@ class Queue extends Sequence
     /**
      * @param string $item
      */
-    public function put(string $item) : void
+    public function put(string $item): void
     {
         $node = new Node($item);
-
         if ($this->isEmpty()) {
             $this->head = $node;
             $this->last = $node;
@@ -40,9 +38,9 @@ class Queue extends Sequence
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
-    public function get() : ?string
+    public function get(): ?string
     {
         if ($this->isEmpty()) {
             return null;
@@ -58,7 +56,7 @@ class Queue extends Sequence
     /**
      * @return Node|null
      */
-    protected function getFirst() : ?Node
+    protected function getFirst(): ?Node
     {
         return $this->head;
     }

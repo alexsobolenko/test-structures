@@ -1,29 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model;
 
-/**
- * Class Dijkstra
- * @package App\Model
- */
 class Dijkstra
 {
     private const INFINITY = 1e19;
 
-    /** @var Graph */
-    private $graph;
-
-    /** @var array */
-    private $used;
-
-    /** @var array */
-    private $esum;
-
-    /** @var array */
-    private $path;
+    /**
+     * @var Graph
+     */
+    private Graph $graph;
 
     /**
-     * Dijkstra constructor.
+     * @var array
+     */
+    private array $used;
+
+    /**
+     * @var array
+     */
+    private array $esum;
+
+    /**
+     * @var array
+     */
+    private array $path;
+
+    /**
      * @param Graph $graph
      */
     public function __construct(Graph $graph)
@@ -43,7 +48,6 @@ class Dijkstra
     {
         $this->init();
         $this->esum[$fromNode] = 0;
-
         while ($currNode = $this->findNearestUnusedNode()) {
             $this->setEsumToNextNodes($currNode);
         }
@@ -51,9 +55,6 @@ class Dijkstra
         return $this->restorePath($fromNode, $toNode);
     }
 
-    /**
-     *  Initialization
-     */
     public function init(): void
     {
         foreach ($this->graph->getNodes() as $node) {
@@ -69,7 +70,6 @@ class Dijkstra
     public function findNearestUnusedNode(): string
     {
         $nearestNode = '';
-
         foreach ($this->graph->getNodes() as $node) {
             if (!$this->used[$node]) {
                 if ($nearestNode == '' || ($this->esum[$node] < $this->esum[$nearestNode])) {
@@ -90,7 +90,6 @@ class Dijkstra
         foreach ($this->graph->getEdges($currNode) as $nextNode => $length) {
             if (!$this->used[$nextNode]) {
                 $newEsum = $this->esum[$currNode] + $length;
-
                 if ($newEsum < $this->esum[$nextNode]) {
                     $this->esum[$nextNode] = $newEsum;
                     $this->path[$nextNode] = $currNode;
@@ -107,13 +106,12 @@ class Dijkstra
     public function restorePath(string $fromNode, string $toNode): string
     {
         $path = $toNode;
-
         while ($toNode !== $fromNode) {
             $toNode = $this->path[$toNode];
             $path = sprintf("%s%s", $toNode, $path);
 
         }
+
         return $path;
     }
-
 }

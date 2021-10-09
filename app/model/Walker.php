@@ -1,18 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model;
 
-/**
- * Class Walker
- * @package App\Model
- */
 class Walker
 {
-    /** @var Graph */
-    private $graph;
+    /**
+     * @var Graph
+     */
+    private Graph $graph;
 
     /**
-     * Walker constructor.
      * @param Graph $graph
      */
     public function __construct(Graph $graph)
@@ -30,11 +29,9 @@ class Walker
     {
         $path = [];
         $sequence->put($node);
-
         while (!$sequence->isEmpty()) {
             $curr = $sequence->get();
             $path[$curr] = true;
-
             foreach ($this->graph->getEdges($curr) as $next => $length) {
                 if (!isset($path[$next])) {
                     if (!$sequence->contains($next)) {
@@ -57,21 +54,23 @@ class Walker
     {
         for ($x = 0; $x < 8; $x++) {
             for ($y = 0; $y < 8; $y++) {
-                if (isset($path["$x$y"])) {
-                    echo "$x$y  ";
-                } elseif ($sequence->contains("$x$y")) {
-                    echo "++  ";
+                $value = strval($x) . strval($y);
+                if (isset($path[$value])) {
+                    echo $value . ' ';
+                } elseif ($sequence->contains($value)) {
+                    echo '++  ';
                 } else {
-                    echo "--  ";
+                    echo '--  ';
                 }
             }
+
             echo '<br>';
         }
 
         echo '<br>';
 
         foreach ($sequence->getList() as $item) {
-            echo $item.' ';
+            echo $item . ' ';
         }
 
         echo '<br><br>';

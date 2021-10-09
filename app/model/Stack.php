@@ -1,19 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model;
 
-/**
- * Class Stack
- * @package App\Model
- */
 class Stack extends Sequence
 {
-    /** @var Node|null */
-    private $last;
-
     /**
-     * Stack constructor.
+     * @var Node|null
      */
+    private ?Node $last;
+
     public function __construct()
     {
         $this->last = null;
@@ -45,7 +42,7 @@ class Stack extends Sequence
     /**
      * @return Node|null
      */
-    protected function getFirst() : ?Node
+    protected function getFirst(): ?Node
     {
         return $this->last;
     }

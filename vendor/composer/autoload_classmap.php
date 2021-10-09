@@ -6,11 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Model\\Dijkstra' => $baseDir . '/app/model/Dijkstra.php',
-    'App\\Model\\Graph' => $baseDir . '/app/model/Graph.php',
-    'App\\Model\\Node' => $baseDir . '/app/model/Node.php',
-    'App\\Model\\Queue' => $baseDir . '/app/model/Queue.php',
-    'App\\Model\\Sequence' => $baseDir . '/app/model/Sequence.php',
-    'App\\Model\\Stack' => $baseDir . '/app/model/Stack.php',
-    'App\\Model\\Walker' => $baseDir . '/app/model/Walker.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );

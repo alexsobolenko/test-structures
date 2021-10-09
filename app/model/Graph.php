@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Model;
 
 class Graph
 {
-    /** @var array */
-    private $edges;
-
     /**
-     * Graph constructor.
+     * @var array
      */
+    private array $edges;
+
     public function __construct()
     {
         $this->edges = [];
